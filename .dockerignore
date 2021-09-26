@@ -1,0 +1,8 @@
+env
+clothing-rater.json
+.idea
+clothing_rater.egg-info
+code_tests.py
+tags
+install_python_env.sh
+sample_labels

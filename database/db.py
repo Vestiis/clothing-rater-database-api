@@ -1,0 +1,43 @@
+from typing import Generator
+
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+from database.config import Config
+
+ssl_args = {
+    "sslrootcert": "server-ca.pem",
+    "sslcert": "client-cert.pem",
+    "sslkey": "client-key.pem",
+}
+engine = create_engine(
+    Config.SQLALCHEMY_DATABASE_URI,
+    # connect_args={"sslmode": "require"},
+    connect_args=ssl_args,
+    pool_pre_ping=True,
+    pool_size=90,
+    max_overflow=10,
+)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base = declarative_base()
+
+
+def get_db() -> Generator:
+    try:
+        db = SessionLocal()
+        yield db
+        # return db
+    finally:
+        db.close()
+
+
+if __name__ == "__main__":
+    import pandas as pd
+
+    print()
+    from database.schemas.country import Country as CountrySql
+
+    db = next(get_db())
+    print(db.query(CountrySql).all()[0])
