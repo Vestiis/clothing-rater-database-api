@@ -31,13 +31,3 @@ def get_db() -> Generator:
         # return db
     finally:
         db.close()
-
-
-if __name__ == "__main__":
-    import pandas as pd
-
-    print()
-    from database.schemas.country import Country as CountrySql
-
-    db = next(get_db())
-    print(db.query(CountrySql).all()[0])
