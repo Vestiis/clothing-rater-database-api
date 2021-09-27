@@ -1,0 +1,12 @@
+*.pem
+.idea
+env
+clothing_rater_database_api.egg-info
+code_tests.py
+clothing-rater.json
+tags
+install_python_env.sh
+**/__pycache__
+sample_labels
+
+install.sh
