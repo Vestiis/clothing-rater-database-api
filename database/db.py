@@ -16,8 +16,8 @@ engine = create_engine(
     # connect_args={"sslmode": "require"},
     connect_args=ssl_args,
     pool_pre_ping=True,
-    pool_size=90,
-    max_overflow=10,
+    pool_size=15,
+    max_overflow=5,
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
