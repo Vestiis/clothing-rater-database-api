@@ -33,7 +33,6 @@ class GoogleInterface:
         # Generate an id_token with de current ENV SERVICE ACCOUNT
 
         aud = audience if audience is not None else self.current_audience
-        print()
         open_id_connect_token = id_token.fetch_id_token(self.request, aud)
 
         return open_id_connect_token
