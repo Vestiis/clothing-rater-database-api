@@ -1,16 +1,22 @@
-from typing import Optional
+import json
+from typing import List
 
 from pydantic import BaseConfig, BaseModel
 
 
 class Country(BaseModel):
-    name: str
-    situation: Optional[float]
-    corruption: Optional[float]
-    poverty_rate: Optional[float]
-    human_freedom_index: Optional[float]
-    global_food_security_index: Optional[float]
-    minimum_monthly_salary: Optional[float]
+    id: int
+    names: List[str]
+    politique: float
+    human_rights: float
+    work: float
+    societal: float
 
     class Config(BaseConfig):
         orm_mode = True
+
+    def __hash__(self):
+        return hash(json.dumps(self.dict()))
+
+    def __eq__(self, other: "Country"):
+        return json.dumps(self.dict()) == json.dumps(other.dict())
