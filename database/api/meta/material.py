@@ -12,7 +12,6 @@ def get_all_materials(
     api_url: str = "http://localhost",
     api_port: int = 8080,
     authorization_token: Optional[str] = None,
-    audience: Optional[str] = None,
     timeout: int = 3600,
     serialize_as_python_obj: bool = True,
 ):
@@ -22,7 +21,6 @@ def get_all_materials(
         api_url=api_url,
         api_port=api_port,
         authorization_token=authorization_token,
-        audience=audience,
         timeout=timeout,
     )
     if serialize_as_python_obj:

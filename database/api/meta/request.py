@@ -24,13 +24,12 @@ def make_request(
     api_url: str = "http://localhost",
     api_port: int = 8080,
     authorization_token: Optional[str] = None,
-    audience: Optional[str] = None,
     timeout: int = 3600,
     data: Optional[dict] = None,
     request_type: str = "POST",
 ):
-    if authorization_token is None:
-        authorization_token = GoogleInterface().generate_id_token(audience=audience)
+    if not api_url.startswith("http://localhost") and authorization_token is None:
+        authorization_token = GoogleInterface().generate_id_token(audience=api_url)
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {authorization_token}",
