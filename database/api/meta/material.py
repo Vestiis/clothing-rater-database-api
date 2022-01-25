@@ -26,12 +26,3 @@ def get_all_materials(
     if serialize_as_python_obj:
         return parse_obj_as(List[Material], json.loads(response))
     return json.loads(response)
-
-
-if __name__ == "__main__":
-    print(
-        get_all_materials(
-            api_url="http://localhost",
-            audience="https://clothing-rater-api-n7s7fuxxna-ew.a.run.app",
-        )
-    )
