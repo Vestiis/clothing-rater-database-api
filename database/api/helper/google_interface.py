@@ -12,11 +12,8 @@ logger = logging.getLogger(__name__)
 class GoogleInterface:
     def __init__(self):
 
-        print()
         self.request = google.auth.transport.requests.Request()
-        if os.environ.get("API_URL") is None:
-            raise Exception("Missing current instance url API_URL environment variable")
-        self.current_audience = os.environ["API_URL"]
+        self.current_audience = os.environ.get("API_URL")
 
     def current_service_account_email(self):
         try:
